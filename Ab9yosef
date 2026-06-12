@@ -1,39 +1,28 @@
--- [[ 🛡️ CODENAME: ABU_YOUSEF_SECURE_FARM | OFFICIAL GITHUB RELEASE 🛡️ ]]
--- Copyright © 2026 Abu Yousef. All Rights Reserved.
--- PROTECTED BY ABU YOUSEF CRYPTO LAYER / ANTI-THEFT SYSTEM
+-- سكريبت تخطي محدد السرعة (41 كم/س)
+local player = game.Players.LocalPlayer
+local runService = game:GetService("RunService")
 
-local _0xAY_1 = game;
-local _0xAY_2 = _0xAY_1:GetService("\67\111\114\101\71\117\105");
-local _0xAY_3 = _0xAY_1:GetService("\80\108\97\121\101\114\115");
-local _0xAY_4 = _0xAY_1:GetService("\82\117\110\83\101\114\118\105\99\101");
-local _0xAY_5 = _0xAY_1:GetService("\86\105\114\116\117\97\108\85\115\101\114");
+print("--- [AbuYousef] محاولة كسر حاجز السرعة ---")
 
-local _0xAY_G = Instance.new("\83\99\114\101\101\110\71\117\105")
-_0xAY_G.Name = "\65\98\117\89\111\117\115\101\102\95\71\105\116\72\117\98"
-pcall(function() _0xAY_G.Parent = _0xAY_2 end)
-if not _0xAY_G.Parent then _0xAY_G.Parent = _0xAY_3.LocalPlayer:WaitForChild("\80\108\97\121\101\114\71\117\105") end
-
-if hookfunction and hookmetamethod then
-    pcall(function()
-        local pl = _0xAY_3.LocalPlayer
-        local ok; ok = hookfunction(pl.Kick, function(self, msg) return nil end)
-        local onc; onc = hookmetamethod(game, "\95\95\110\97\109\101\99\97\108\108", function(self, ...)
-            local m = getnamecallmethod()
-            if m == "\75\105\99\107" or m == "\107\105\99\107" then return nil end
-            return onc(self, ...)
-        end)
-    end)
-end
-
-pcall(function()
-    _0xAY_3.LocalPlayer.Idled:Connect(function()
-        _0xAY_5:Button2Down(Vector2.new(0,0), workspace.CurrentCamera.CFrame)
-        task.wait(1)
-        _0xAY_5:Button2Up(Vector2.new(0,0), workspace.CurrentCamera.CFrame)
-    end)
+runService.Heartbeat:Connect(function()
+    local character = player.Character
+    if character and character:FindFirstChild("Humanoid") then
+        local seat = character.Humanoid.SeatPart
+        
+        if seat and seat:IsA("VehicleSeat") then
+            -- 1. جبر السيارة على ضغط البنزين كامل (Throttle)
+            seat.Throttle = 1 
+            
+            -- 2. دفع فيزيائي أقوى (بدل ما نحدد 145، نخليه يدفع باستمرار)
+            seat.AssemblyLinearVelocity = seat.CFrame.LookVector * 145
+            
+            -- 3. تثبيت التوجيه (عشان ما يلف الموتر)
+            seat.Steer = 0
+        end
+    end
 end)
 
-local _0xM = Instance.new("\70\114\97\109\101")
+print("--- [AbuYousef] تم تفعيل كاسر السرعة ---")
 _0xM.Size = UDim2.new(0, 330, 0, 210)
 _0xM.Position = UDim2.new(0.5, -165, 0.4, -105)
 _0xM.BackgroundColor3 = Color3.fromRGB(30, 35, 35)
