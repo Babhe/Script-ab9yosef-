@@ -1,4 +1,4 @@
--- سكريبت التجميع الآمن والثابت 100% - حقوق أبو يوسف الخاصة 👑
+-- سكريبت التجميع الآمن والثابت 100% - حقوق أبو يوسف - أبو مطر 👑
 -- نسخة الأمان القصوى للحسابات المشحونة (تطابق العدادات والواجهة)
 
 local sg = Instance.new("ScreenGui")
@@ -31,13 +31,13 @@ local stroke = Instance.new("UIStroke", main)
 stroke.Color = Color3.fromRGB(50, 60, 60)
 stroke.Thickness = 1.5
 
--- الحقوق الرسمية مخصصة لك يا غالي
+-- الحقوق الرسمية الجديدة (أبو يوسف - أبو مطر)
 local title = Instance.new("TextLabel", main)
 title.Size = UDim2.new(1, 0, 0, 45)
 title.BackgroundTransparency = 1
-title.Text = "سكريت خاص بحقوق أبو يوسف اختصار دس M9L"
+title.Text = "سكريت خاص بحقوق أبو يوسف - أبو مطر"
 title.TextColor3 = Color3.fromRGB(255, 255, 255)
-title.TextSize = 13
+title.TextSize = 14
 title.Font = Enum.Font.GothamBold
 
 -- صندوق عداد السرعة الليلية باللون الأزرق الفاتح نفس اللقطة
@@ -174,3 +174,4 @@ task.spawn(function()
         end)
     end
 end)
+ 
