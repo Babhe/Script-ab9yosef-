@@ -1,8 +1,8 @@
 -- سكريبت التجميع الآمن والثابت 100% - حقوق أبو يوسف - أبو مطر 👑
--- نسخة الأمان القصوى للحسابات المشحونة (تطابق العدادات والواجهة)
+-- نسخة الأمان القصوى لحسابك المشحون (مع ميزة التصغير - والحماية من الطرد الدائري)
 
 local sg = Instance.new("ScreenGui")
-sg.Name = "AbuYousef_Perfect_Farm"
+sg.Name = "AbuYousef_Perfect_Farm_v2"
 pcall(function() sg.Parent = game:GetService("CoreGui") end)
 if not sg.Parent then sg.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui") end
 
@@ -20,7 +20,7 @@ end)
 local main = Instance.new("Frame")
 main.Size = UDim2.new(0, 330, 0, 210)
 main.Position = UDim2.new(0.5, -165, 0.4, -105)
-main.BackgroundColor3 = Color3.fromRGB(33, 43, 43) -- نفس لون خلفية الفيديو بالملي
+main.BackgroundColor3 = Color3.fromRGB(33, 43, 43) 
 main.BorderSizePixel = 0
 main.Active = true
 main.Draggable = true
@@ -31,14 +31,55 @@ local stroke = Instance.new("UIStroke", main)
 stroke.Color = Color3.fromRGB(50, 60, 60)
 stroke.Thickness = 1.5
 
--- الحقوق الرسمية الجديدة (أبو يوسف - أبو مطر)
+-- زر التصغير (-) الفخم
+local minimizeBtn = Instance.new("TextButton", main)
+minimizeBtn.Size = UDim2.new(0, 30, 0, 30)
+minimizeBtn.Position = UDim2.new(1, -35, 0, 8)
+minimizeBtn.BackgroundColor3 = Color3.fromRGB(25, 30, 30)
+minimizeBtn.Text = "-"
+minimizeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+minimizeBtn.TextSize = 20
+minimizeBtn.Font = Enum.Font.GothamBold
+Instance.new("UICorner", minimizeBtn).CornerRadius = UDim.new(0, 6)
+
+-- الدائرة الصغيرة التي تظهر عند التصغير
+local circleGui = Instance.new("TextButton", sg)
+circleGui.Size = UDim2.new(0, 65, 0, 65)
+circleGui.Position = UDim2.new(0.1, 0, 0.1, 0)
+circleGui.BackgroundColor3 = Color3.fromRGB(33, 43, 43)
+circleGui.Text = "أبو يوسف"
+circleGui.TextColor3 = Color3.fromRGB(255, 215, 0)
+circleGui.TextSize = 12
+circleGui.Font = Enum.Font.GothamBold
+circleGui.Visible = false
+circleGui.Active = true
+circleGui.Draggable = true
+Instance.new("UICorner", circleGui).CornerRadius = UDim.new(1, 0)
+local circleStroke = Instance.new("UIStroke", circleGui)
+circleStroke.Color = Color3.fromRGB(255, 215, 0)
+circleStroke.Thickness = 2
+
+-- برمجة أزرار التصغير والتكبير
+minimizeBtn.MouseButton1Click:Connect(function()
+    main.Visible = false
+    circleGui.Visible = true
+end)
+
+circleGui.MouseButton1Click:Connect(function()
+    circleGui.Visible = false
+    main.Visible = true
+end)
+
+-- الحقوق الرسمية الجديدة بدون أي اختصارات أو روابط خارجية
 local title = Instance.new("TextLabel", main)
-title.Size = UDim2.new(1, 0, 0, 45)
+title.Size = UDim2.new(1, -40, 0, 45)
+title.Position = UDim2.new(0, 10, 0, 0)
 title.BackgroundTransparency = 1
 title.Text = "سكريت خاص بحقوق أبو يوسف - أبو مطر"
 title.TextColor3 = Color3.fromRGB(255, 255, 255)
-title.TextSize = 14
+title.TextSize = 13
 title.Font = Enum.Font.GothamBold
+title.TextXAlignment = Enum.TextXAlignment.Left
 
 -- صندوق عداد السرعة الليلية باللون الأزرق الفاتح نفس اللقطة
 local speedBox = Instance.new("Frame", main)
@@ -52,7 +93,7 @@ local speedLabel = Instance.new("TextLabel", speedBox)
 speedLabel.Size = UDim2.new(1, 0, 1, 0)
 speedLabel.BackgroundTransparency = 1
 speedLabel.Text = "السرعة الليلية: 0 كم/س"
-speedLabel.TextColor3 = Color3.fromRGB(52, 152, 219) -- نفس الدرجة الزرقاء بالفيديو
+speedLabel.TextColor3 = Color3.fromRGB(52, 152, 219) 
 speedLabel.TextSize = 14
 speedLabel.Font = Enum.Font.GothamMedium
 
@@ -68,15 +109,15 @@ local distLabel = Instance.new("TextLabel", distBox)
 distLabel.Size = UDim2.new(1, 0, 1, 0)
 distLabel.BackgroundTransparency = 1
 distLabel.Text = "المسافة الكلية: 0 متر"
-distLabel.TextColor3 = Color3.fromRGB(46, 204, 113) -- نفس الدرجة الخضراء بالفيديو
+distLabel.TextColor3 = Color3.fromRGB(46, 204, 113) 
 distLabel.TextSize = 14
 distLabel.Font = Enum.Font.GothamMedium
 
--- زر التشغيل المتطابق مع لقطة الشاشة (أخضر فاقع عند التشغيل وأحمر عند الإيقاف)
+-- زر التشغيل المتطابق مع لقطة الشاشة
 local toggleBtn = Instance.new("TextButton", main)
 toggleBtn.Size = UDim2.new(1, -24, 0, 45)
 toggleBtn.Position = UDim2.new(0, 12, 0, 145)
-toggleBtn.BackgroundColor3 = Color3.fromRGB(192, 57, 43) -- يبدأ أحمر
+toggleBtn.BackgroundColor3 = Color3.fromRGB(192, 57, 43) 
 toggleBtn.Text = "شغل التجميع ياقلبي"
 toggleBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 toggleBtn.TextSize = 15
@@ -95,13 +136,12 @@ toggleBtn.MouseButton1Click:Connect(function()
     
     if isToggled then
         if seat and seat:IsA("VehicleSeat") then
-            -- تحويل الزر للون الأخضر والكتابة نفس اللقطة بالظبط عند التشغيل
             toggleBtn.BackgroundColor3 = Color3.fromRGB(39, 174, 96) 
             toggleBtn.Text = "وقف التجميع ياقلبي"
             
             savedCFrame = seat.CFrame
             
-            -- إنشاء موازن فيزيائي قوي لتثبيت السيارة ومنعها من الجنون أو الحركة
+            -- إنشاء موازن فيزيائي قوي لمنع الموتر من الدوران أو الطيران (حماية من الطرد الدائري)
             local bp = seat:FindFirstChild("YousefPos") or Instance.new("BodyPosition", seat)
             bp.Name = "YousefPos"
             bp.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
@@ -110,9 +150,9 @@ toggleBtn.MouseButton1Click:Connect(function()
             local bg = seat:FindFirstChild("YousefGyro") or Instance.new("BodyGyro", seat)
             bg.Name = "YousefGyro"
             bg.MaxTorque = Vector3.new(math.huge, math.huge, math.huge)
-            bg.CFrame = savedCFrame
+            bg.CFrame = savedCFrame -- قفل الاتجاه سيدة ومنع الالتفاف الدائري تماماً
             
-            -- تشغيل الدفع المتناسق مع قفل المكان
+            -- تشغيل الدفع الفيزيائي الآمن والمستقيم
             farmConnection = game:GetService("RunService").Heartbeat:Connect(function()
                 if not isToggled or not seat or not seat.Parent then
                     if farmConnection then farmConnection:Disconnect() end
@@ -120,9 +160,8 @@ toggleBtn.MouseButton1Click:Connect(function()
                 end
                 
                 pcall(function()
-                    -- إرسال القوة الكاملة 145 ليقرأ عداد اللعبة الأصلي 145 بالتمام والكمال
+                    -- إرسال القوة الكاملة 145 ليقرأ العداد الحقيقي 145 كم/س بالملي بدون حركة دائرية
                     seat.AssemblyLinearVelocity = savedCFrame.LookVector * 145
-                    -- الحفاظ على ثبات الموازن الفيزيائي
                     bp.Position = savedCFrame.Position
                     bg.CFrame = savedCFrame
                 end)
@@ -134,7 +173,6 @@ toggleBtn.MouseButton1Click:Connect(function()
             toggleBtn.Text = "شغل التجميع ياقلبي"
         end
     else
-        -- إعادة الألوان لوضع الإيقاف وحذف الموازنات لترجع السيارة طبيعية
         toggleBtn.BackgroundColor3 = Color3.fromRGB(192, 57, 43)
         toggleBtn.Text = "شغل التجميع ياقلبي"
         if farmConnection then
@@ -151,7 +189,7 @@ toggleBtn.MouseButton1Click:Connect(function()
     end
 end)
 
--- تحديث وعرض الأرقام على شاشة السكربت والمسافات
+-- تحديث العدادات على الواجهة
 task.spawn(function()
     while true do
         task.wait(0.2)
@@ -159,9 +197,7 @@ task.spawn(function()
             local seat = game.Players.LocalPlayer.Character.Humanoid.SeatPart
             if seat and seat:IsA("VehicleSeat") then
                 if isToggled then
-                    -- تذبذب خفيف جداً وذكي للعداد (بين 144 و 146) لتخطي رادار الحماية
                     speedLabel.Text = "السرعة الليلية: " .. math.random(144, 146) .. " كم/س"
-                    -- حساب زيادة المسافة وعرضها بشكل حقيقي متناسق
                     totalDist = totalDist + (145 * 0.2 * 0.8)
                     distLabel.Text = "المسافة الكلية: " .. math.floor(totalDist) .. " متر"
                 else
@@ -174,4 +210,3 @@ task.spawn(function()
         end)
     end
 end)
- 
